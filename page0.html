@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Modal Example</title>
+    <style>
+        @font-face {
+            font-family: Fontt;
+            src: url(https://uupload.ir/view/vazirmatn-regular_s8sw.ttf);
+        }
+
+        /* CSS for background image */
+        body {
+            background-image: url('https://s8.uupload.ir/files/imgggg_401n.jpg');
+            background-size: cover; /* Full cover background image */
+            background-repeat: no-repeat; /* Prevent image from repeating */
+            background-position: center center; /* Center the background image */
+            margin: 0; /* Remove margins */
+            padding: 0; /* Remove padding */
+            height: 100vh; /* Full height of the viewport */
+            display: flex; /* Display items in a row */
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+            font-family: Fontt;
+            font-size: 20px;
+            color: #fff; /* Text color */
+        }
+
+        /* CSS for modal */
+        .modal {
+            display: none; /* Initially hidden */
+            position: fixed; /* Fixed position */
+            z-index: 9999; /* Highest z-index */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            overflow: auto; /* Enable scrolling if content exceeds viewport */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #111; /* Dark background */
+            color: #fff; /* Light text color */
+            margin: 15% auto; /* Center modal vertically and horizontally */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* 80% width of the viewport */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation-name: modalopen;
+            animation-duration: 0.5s;
+            text-align: center; /* Center text inside modal */
+        }
+
+        /* Animation for modal */
+        @keyframes modalopen {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+
+        /* Close button style */
+        .close {
+            color: #aaa;
+            float: right; /* Float button to the right */
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Style for input inside modal */
+        .modal-content input[type="text"] {
+            width: 70%; /* Set width for input */
+            padding: 10px; /* Add padding */
+            margin: 10px auto; /* Center input horizontally with margin */
+            display: block; /* Display input as block element */
+        }
+
+        /* Style for placeholder text alignment */
+        .modal-content input[type="text"]::placeholder {
+            text-align: right; /* Right-align placeholder text */
+        }
+
+        /* Style for button inside modal */
+        .modal-content button {
+            padding: 10px 20px; /* Add padding to button */
+            background-color: #333; /* Green background */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+        }
+
+        button {
+            padding: 10px 20px; /* Add padding to button */
+            background-color: #333; /* Dark background */
+            color: #fff; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+
+        button:hover {
+            background-color: #555; /* Darken background color on hover */
+        }
+
+        /* Adjust margin between images */
+        #btnKey {
+            margin-right: 20px; /* Horizontal margin */
+        }
+    </style>
+</head>
+<body>
+
+<audio id="audiio" Style="display:none">
+  <source src="https://imgurl.ir/uploads/w91994_scary-music-box-for-spooky-scenes-165983.mp3" type="audio/mpeg">
+</audio>
+
+<img src="https://s8.uupload.ir/files/quest_9y8l.png" width="50" height="50" onclick="openModal('myModalKey'); playAudio()" id="btnKey">
+<img src="https://s8.uupload.ir/files/location_(1)_vnhd.png" width="50" height="50" onclick="openModal('myModalLocation'); playAudio()" id="btnLocation">
+
+<div id="myModalKey" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('myModalKey')">&times;</span>
+        <p id="tagp" style="font-family: Fontt; font-size: 25px;">
+شما ماموریت دارید پا به جنگل تاریکی بگذارید و ملکه تاریکی را پیدا کنید و از او کلید را بگیرید تا بتوانید صندوقچه مرموزی که سالهاست ماموران ما نتوانسته اند آن را باز کنند, باز کنید هیچ ماموری از ما تاکنون از جنگل تاریکی زنده بیرون نیامده است
+</p>
+    </div>
+</div>
+
+<div id="myModalLocation" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('myModalLocation')">&times;</span>
+		<a><p id="tagp" style="font-family: Fontt; font-size: 25px;margin: 0;">Dark Forest</p></a>
+	    <a><p id="tagp" style="font-family: Fontt; font-size: 25px;margin: 0;">Российская</p></a>		
+    </div>
+</div>
+
+<script>
+    function openModal(modalId) {
+
+        var allModals = document.querySelectorAll('.modal');
+        allModals.forEach(function(modal) {
+            modal.style.display = 'none';
+        });
+
+ 
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+	
+	function playAudio() {
+        var playAudiio = document.getElementById("audiio");
+        playAudiio.play();
+    }
+</script>
+
+</body>
+</html>
